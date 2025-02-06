@@ -1,0 +1,68 @@
+﻿@model List<MachineTestTask.Models.Product>
+
+<h2 class="text-info">Product List</h2>
+<form action="@Url.Action("Create")" method="get">
+    <button class="btn btn-success btn-sm">Add New Product</button>
+</form>
+<br />
+
+<table class="table table-bordered text-center">
+    <thead class="sm-3">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.CategoryId</td>
+                <td>@item.Category.CategoryName</td>
+
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = item.ProductId })" class="btn btn-primary">Edit</a> ||
+                    <a href="@Url.Action("Delete", "Product", new { id = item.ProductId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<nav>
+    <ul class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, pageSize = ViewBag.PageSize })">Previous</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="page-item active"><span class="page-link">@i</span></li>
+            }
+           
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, pageSize = ViewBag.PageSize })">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+<br />
+<form action="@Url.Action("Index","Home")">
+    <button class="btn btn-primary" type="submit">Back</button>
+</form>

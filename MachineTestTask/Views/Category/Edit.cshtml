@@ -1,0 +1,14 @@
+﻿@model MachineTestTask.Models.Category
+
+
+<h2 class="text-info">Edit Category</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.CategoryId)
+    @Html.LabelFor(x => x.CategoryName, "Edit Category Name", new { @class = "form-label" })
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success btn-sm" type="submit">Save</button>
+}
+

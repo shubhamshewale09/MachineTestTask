@@ -1,0 +1,19 @@
+﻿@model MachineTestTask.Models.Category
+
+
+<h2 class="text-info">Create Category</h2>
+
+@using(Html.BeginForm())
+            {
+                <div class="sm-3">
+                    @Html.LabelFor(x=>x.CategoryName,"Category Name", new {@class="form-label"})
+                    @Html.TextBoxFor(x=>x.CategoryName,new {@class="form-control"})
+                </div>
+                <br />
+                <div class="sm-3">
+                    <button class="btn btn-success btn-sm" type="submit">Add</button>
+                </div>
+            }
+
+
+
